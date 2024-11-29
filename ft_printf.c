@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:27:12 by nefimov           #+#    #+#             */
-/*   Updated: 2024/11/28 11:53:29 by nefimov          ###   ########.fr       */
+/*   Updated: 2024/11/29 16:43:05 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ static char	*print_var(char *str, va_list args, int *count)
 		*count += print_char(va_arg(args, int));
 	else if (*str == 's')
 		*count += print_string(va_arg(args, char *));
-	// else if (*str == 'p')
-	//  	*count += print_pointer(va_arg(args, void *)); // not ready
+	else if (*str == 'p')
+	 	*count += print_pointer(va_arg(args, void *)); // not ready
 	else if (*str == 'd' || *str == 'i')
 		*count += print_int(va_arg(args, int));
 	else if (*str == 'u')
-		*count += print_uint(va_arg(args, unsigned int)); // not ready
+		*count += print_uint(va_arg(args, unsigned int));
 	else if (*str == 'x' || *str == 'X')
-		*count += print_hex(va_arg(args, int), *str); // print only positive
+		*count += print_hex(va_arg(args, int), *str);
 	else if (*str == '%')
 		*count += print_char('%');	
 	return (str + 1);
