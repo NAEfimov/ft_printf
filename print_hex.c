@@ -6,12 +6,13 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:27:42 by nefimov           #+#    #+#             */
-/*   Updated: 2024/11/28 14:42:25 by nefimov          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:16:30 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "libft.h"
+#include "ft_printf.h"
+// #include "libft.h"
 
 static int	get_hex_len(unsigned int num)
 {
@@ -27,6 +28,7 @@ static int	get_hex_len(unsigned int num)
 	}
 	return (i);
 }
+
 int	print_hex(int n, char c)
 {
 	char			s[9];
@@ -44,8 +46,8 @@ int	print_hex(int n, char c)
 	while (hex_len >= 0)
 	{
 		s[hex_len--] = hex_base[num % 16];
-		num /= 16;	
+		num /= 16;
 	}
 	ft_putstr_fd(s, 1);
-	return(ft_strlen(s));
+	return (ft_strlen(s));
 }
