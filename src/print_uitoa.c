@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:35:35 by nefimov           #+#    #+#             */
-/*   Updated: 2024/12/02 16:57:00 by nefimov          ###   ########.fr       */
+/*   Updated: 2024/12/03 15:44:38 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ char	*ft_uitoa(unsigned int n)
 	if (n == 0)
 		*s = '0';
 	else
+	{
 		while (--len > 0)
 		{
 			s[len - 1] = n % 10 + '0';
 			n /= 10;
 		}
+	}
 	return (str);
 }
