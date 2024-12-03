@@ -3,8 +3,6 @@ NAME        = libftprintf.a
 #------------------------------------------------#
 #   INGREDIENTS                                  #
 #------------------------------------------------#
-# LIBS        libraries to be used
-# LIBS_TARGET libraries to be built
 #
 # INCS        header file locations
 #
@@ -16,14 +14,10 @@ NAME        = libftprintf.a
 # CC        compiler
 # CFLAGS    compiler flags
 # CPPFLAGS  preprocessor flags
-# LDFLAGS     linker flags
-# LDLIBS      libraries name
 
-#LIBS        := ft
-#LIBS_TARGET := libft/libft.a
+INCS        := include
 
-#INCS        := . libft
-
+SRC_DIR     := src
 SRCS		:=		\
 	ft_printf.c		\
 	print_hex.c		\
@@ -32,20 +26,17 @@ SRCS		:=		\
 	print_str.c		\
 	print_itoa.c	\
 	print_uitoa.c	\
-	print_utils.c
+	print_utils.c	
+SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 
-# SRCS_B		=
-
-OBJS		:= $(SRCS:%.c=%.o)
-# OBJS_B		:= $(SRCS_B:%.c=%.o)
+BUILD_DIR   := build
+OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
-# DEPS_B		:= $(OBJS_B:.o=.d)
+
 
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
-CPPFLAGS	:= -MMD -MP
-# LDFLAGS     := $(addprefix -L,$(dir $(LIBS_TARGET)))
-# LDLIBS      := $(addprefix -l,$(LIBS))
+CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 AR 			:= ar
 ARFLAGS		:= -r -c -s
 
@@ -56,7 +47,8 @@ ARFLAGS		:= -r -c -s
 # MAKEFLAGS make flags
 
 RM			= rm -f
-# MAKEFLAGS	+= --no-print-directory
+MAKEFLAGS	+= --no-print-directory
+DIR_DUP     = mkdir -p $(@D)
 
 #------------------------------------------------#
 #   RECIPES                                      #
@@ -70,28 +62,20 @@ RM			= rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) # $(LIBS_TARGET)
+$(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 	$(info CREATED $(NAME))
 
-# bonus: $(OBJS) $(OBJS_B)
-# 	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_B)
-# 	$(info CREATED $(NAME))
-
-#$(LIBS_TARGET):
-#	$(MAKE) -C $(@D)
-
-%.o: %.c
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-	$(info CREATED $@)-
+	$(info CREATED $@)
 
 -include $(DEPS)
 
 clean:
-# 	for f in $(dir $(LIBS_TARGET)); do $(MAKE) -C $$f clean; done
 	$(RM) $(OBJS) $(DEPS)
 fclean: clean
-#	for f in $(dir $(LIBS_TARGET)); do $(MAKE) -C $$f fclean; done
 	$(RM) $(NAME)
 
 re:
