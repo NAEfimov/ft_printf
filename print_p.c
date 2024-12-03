@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 16:29:38 by nefimov           #+#    #+#             */
-/*   Updated: 2024/12/02 16:16:40 by nefimov          ###   ########.fr       */
+/*   Updated: 2024/12/03 11:30:06 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static int	get_hex_len(unsigned long num)
 
 static int	print_phex(unsigned long n)
 {
-	char			s[13];
+	char			s[19];
 	int				i;
 	char			*hex_base;
 
 	hex_base = "0123456789abcdef";
 	i = get_hex_len(n) - 1;
-	ft_bzero(s, 13);
+	ft_bzero(s, 19);
 	while (i >= 0)
 	{
 		s[i--] = hex_base[n % 16];
