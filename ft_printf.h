@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:27:04 by nefimov           #+#    #+#             */
-/*   Updated: 2024/12/02 16:39:45 by nefimov          ###   ########.fr       */
+/*   Updated: 2024/12/03 11:12:07 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_printf(const char *str, ...);
 
 // print_num.c
 int		print_int(int num);
-int		print_uint(int num);
+int		print_uint(unsigned int num);
 
 // print_str.c
 int		print_char(char c);

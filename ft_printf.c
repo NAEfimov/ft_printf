@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:27:12 by nefimov           #+#    #+#             */
-/*   Updated: 2024/12/02 16:34:26 by nefimov          ###   ########.fr       */
+/*   Updated: 2024/12/03 11:11:13 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*print_var(char *str, va_list args, int *count)
 	else if (*str == 'd' || *str == 'i')
 		*count += print_int(va_arg(args, int));
 	else if (*str == 'u')
-		*count += print_uint(va_arg(args, int));
+		*count += print_uint(va_arg(args, unsigned int));
 	else if (*str == 'x' || *str == 'X')
 		*count += print_hex(va_arg(args, int), *str);
 	else if (*str == '%')
